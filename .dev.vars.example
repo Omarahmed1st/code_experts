@@ -1,0 +1,11 @@
+# Local secrets for `npm run dev` / `npm start`. Copy to .dev.vars (git-ignored).
+# Nothing here is needed for local development.
+#
+# ASSESSMENT_SECRET=      # signs quiz and exam attempts (32+ random characters; local dev has a fallback)
+# TURNSTILE_SECRET_KEY=   # Turnstile check on the staff sign-in form (pair it with the TURNSTILE_SITE_KEY var in wrangler.jsonc)
+#
+# Ads (Phase 6) need no secret. ADS_ENABLED and CMP_SCRIPT_URL are plain vars in wrangler.jsonc;
+# the AdSense publisher id and ad unit ids are entered on /admin/ads (they are public by design).
+#
+# Sessions need no secret: the cookie holds a random token and D1 stores only its SHA-256.
+# Production values are set with `wrangler secret put <NAME>`, never committed.

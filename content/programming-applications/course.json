@@ -1,0 +1,18 @@
+{
+  "courseId": "course_programming_applications",
+  "topics": [
+    { "slug": "python-introduction", "title": "Python introduction", "description": "Running Python, print(), comments, and how Python differs from C++." },
+    { "slug": "variables-and-data-types", "title": "Variables and data types", "description": "int, float, str and bool, and how Python decides a value's type." },
+    { "slug": "input-and-output", "title": "Input and output", "description": "Reading text with input(), converting it, and formatting output." },
+    { "slug": "operators", "title": "Operators", "description": "Arithmetic including / // and %, comparisons, and a first if and else." },
+    { "slug": "strings", "title": "Strings", "description": "Indexing, slicing and the most useful string methods." },
+    { "slug": "lists", "title": "Lists", "description": "Ordered, changeable collections: indexing, adding, removing and looping." },
+    { "slug": "objects", "title": "Objects", "description": "Everything in Python is an object with a type, a value and methods." },
+    { "slug": "python-graphics", "title": "Python graphics", "description": "Windows, coordinates, shapes, colours, text and mouse clicks with Zelle's graphics.py." },
+    { "slug": "object-oriented-programming", "title": "Basic object-oriented programming", "description": "Classes, __init__, attributes and methods." },
+    { "slug": "tuples", "title": "Tuples", "description": "Ordered collections that can't change, and unpacking." },
+    { "slug": "dictionaries", "title": "Dictionaries", "description": "Looking values up by key instead of by position." },
+    { "slug": "functions", "title": "Functions", "description": "def, parameters, return values and default arguments." },
+    { "slug": "practical-exercises", "title": "Practical programming exercises", "description": "Small complete programs that combine everything so far." }
+  ]
+}

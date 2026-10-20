@@ -1,0 +1,98 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+@import "../styles/lec.css";
+@import "../styles/practice.css";
+@import "../styles/ads.css";
+@import "../styles/legal.css";
+
+/* Expose the tokens to Tailwind utilities: bg-surface, text-muted, border-line, ... */
+@theme inline {
+  --color-bg: var(--cl-bg);
+  --color-surface: var(--cl-surface);
+  --color-surface-2: var(--cl-surface-2);
+  --color-line: var(--cl-border);
+  --color-line-strong: var(--cl-border-strong);
+  --color-ink: var(--cl-text);
+  --color-muted: var(--cl-text-muted);
+  --color-primary: var(--cl-primary);
+  --color-primary-hover: var(--cl-primary-hover);
+  --color-primary-text: var(--cl-primary-text);
+  --color-primary-soft: var(--cl-primary-soft);
+  --color-on-primary: var(--cl-on-primary);
+  --color-accent: var(--cl-accent);
+  --color-accent-soft: var(--cl-accent-soft);
+  --color-navy: var(--cl-navy);
+  --color-on-navy: var(--cl-on-navy);
+  --color-easy: var(--cl-easy);
+  --color-easy-soft: var(--cl-easy-soft);
+  --color-medium: var(--cl-medium);
+  --color-medium-soft: var(--cl-medium-soft);
+  --color-hard: var(--cl-hard);
+  --color-hard-soft: var(--cl-hard-soft);
+  --color-on-hard: var(--cl-on-hard);
+  --color-code-bg: var(--cl-code-bg);
+  --color-code-text: var(--cl-code-text);
+
+  --font-display: "Poppins", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --font-sans: "Poppins", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --font-mono: "DejaVu Mono", "DejaVu Sans Mono", ui-monospace, Consolas, monospace;
+
+  --shadow-card: var(--cl-shadow);
+  --radius-card: 1rem;
+}
+
+@layer base {
+  html {
+    background: var(--cl-bg);
+    color: var(--cl-text);
+    font-family: var(--font-sans);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  code,
+  kbd,
+  pre {
+    font-family: var(--font-mono);
+    font-size: 0.92em;
+  }
+
+  /* One visible focus style for every interactive element (WCAG 2.4.7 / 2.4.13). */
+  :focus-visible {
+    outline: 3px solid var(--cl-focus);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  ::selection {
+    background: var(--cl-primary-soft);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

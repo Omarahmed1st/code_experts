@@ -1,0 +1,113 @@
+/*
+ * Code_Expert design tokens: one set of names, two themes, in the "Omar Ahmed lec style"
+ * palette (ink #F2F5FA, yellow #FFD43B, sky #8CC4F2, coral #FF8A7A, green #5FD39A,
+ * Python blue #3776AB, navy #14213D). The lesson stage itself is always dark in both
+ * themes (src/styles/lec-stage.css); these tokens style everything around it.
+ *
+ * Every colour a component uses comes from these variables, so light and dark
+ * mode are a variable swap, never a second set of classes. Text pairs are
+ * checked for WCAG 2.2 AA contrast (4.5:1) by tests/unit/design-tokens.test.ts.
+ * Yellow is only ever a background (buttons, highlights) in the light theme,
+ * because yellow text on a light page can't be read.
+ *
+ * Theme selection:
+ *   - no data-theme on <html>  -> follow the operating system (prefers-color-scheme)
+ *   - data-theme="light|dark"  -> the visitor's explicit choice (ThemeToggle)
+ */
+
+:root {
+  /* light (default) */
+  --cl-bg: #f2f5fa;
+  --cl-surface: #ffffff;
+  --cl-surface-2: #e6ecf5;
+  --cl-border: #d3dcea;
+  --cl-border-strong: #a9b7cf;
+  --cl-text: #14213d;
+  --cl-text-muted: #4a5878;
+  --cl-primary: #ffd43b;
+  --cl-primary-hover: #ffc800;
+  --cl-primary-text: #2a5a87;
+  --cl-on-primary: #14213d;
+  --cl-accent: #2b5f8e;
+  --cl-accent-soft: #e1edf8;
+  --cl-primary-soft: #e1edf8;
+  --cl-navy: #14213d;
+  --cl-on-navy: #f2f5fa;
+  --cl-easy: #0e7a4f;
+  --cl-easy-soft: #dff3e8;
+  --cl-medium: #7a4f00;
+  --cl-medium-soft: #fff2c4;
+  --cl-hard: #b23a2e;
+  --cl-hard-soft: #ffe4df;
+  --cl-on-hard: #ffffff;
+  --cl-focus: #2a5a87;
+  --cl-code-bg: #0e1931;
+  --cl-code-text: #f2f5fa;
+  --cl-shadow: 0 1px 2px rgb(20 33 61 / 0.06), 0 6px 20px rgb(20 33 61 / 0.08);
+  color-scheme: light;
+}
+
+/* dark: used when chosen explicitly, or when the OS prefers dark and no choice was made */
+:root[data-theme="dark"] {
+  --cl-bg: #070d1a;
+  --cl-surface: #0f1c38;
+  --cl-surface-2: #14213d;
+  --cl-border: #24365e;
+  --cl-border-strong: #2b4373;
+  --cl-text: #f2f5fa;
+  --cl-text-muted: #a3b4d4;
+  --cl-primary: #ffd43b;
+  --cl-primary-hover: #ffe173;
+  --cl-primary-text: #ffd43b;
+  --cl-on-primary: #14213d;
+  --cl-accent: #8cc4f2;
+  --cl-accent-soft: #16304f;
+  --cl-primary-soft: #2e2a12;
+  --cl-navy: #14213d;
+  --cl-on-navy: #f2f5fa;
+  --cl-easy: #5fd39a;
+  --cl-easy-soft: #10302a;
+  --cl-medium: #ffd43b;
+  --cl-medium-soft: #2e2a12;
+  --cl-hard: #ff8a7a;
+  --cl-hard-soft: #3a1d22;
+  --cl-on-hard: #14213d;
+  --cl-focus: #ffd43b;
+  --cl-code-bg: #0e1931;
+  --cl-code-text: #f2f5fa;
+  --cl-shadow: 0 1px 2px rgb(0 0 0 / 0.45), 0 10px 30px rgb(0 0 0 / 0.4);
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --cl-bg: #070d1a;
+    --cl-surface: #0f1c38;
+    --cl-surface-2: #14213d;
+    --cl-border: #24365e;
+    --cl-border-strong: #2b4373;
+    --cl-text: #f2f5fa;
+    --cl-text-muted: #a3b4d4;
+    --cl-primary: #ffd43b;
+    --cl-primary-hover: #ffe173;
+    --cl-primary-text: #ffd43b;
+    --cl-on-primary: #14213d;
+    --cl-accent: #8cc4f2;
+    --cl-accent-soft: #16304f;
+    --cl-primary-soft: #2e2a12;
+    --cl-navy: #14213d;
+    --cl-on-navy: #f2f5fa;
+    --cl-easy: #5fd39a;
+    --cl-easy-soft: #10302a;
+    --cl-medium: #ffd43b;
+    --cl-medium-soft: #2e2a12;
+    --cl-hard: #ff8a7a;
+    --cl-hard-soft: #3a1d22;
+    --cl-on-hard: #14213d;
+    --cl-focus: #ffd43b;
+    --cl-code-bg: #0e1931;
+    --cl-code-text: #f2f5fa;
+    --cl-shadow: 0 1px 2px rgb(0 0 0 / 0.45), 0 10px 30px rgb(0 0 0 / 0.4);
+    color-scheme: dark;
+  }
+}

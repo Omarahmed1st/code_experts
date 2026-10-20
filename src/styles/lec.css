@@ -1,0 +1,1041 @@
+/*
+ * The "Omar Ahmed lec style" pieces: the dark cinema stage, the INPUT and OUTPUT
+ * boxes with the yellow Run button, note chips joined to code, index strips, and
+ * the lesson typography around them.
+ *
+ * The stage is always dark, in the light theme too, exactly like the lecture
+ * videos. Its colours are fixed here (--lec-*), not theme tokens.
+ * Positions inside the code use `ch` units: the code font is monospaced, so
+ * column N of a line is exactly N ch from its left edge. That lets notes and
+ * strips line up with the code without measuring anything in JavaScript.
+ */
+
+:root {
+  --lec-night: #070d1a;
+  --lec-panel: #14213d;
+  --lec-box-top: #14264b;
+  --lec-box-bottom: #0e1931;
+  --lec-box-line: #2b4373;
+  --lec-rule: #22375f;
+  --lec-ink: #f2f5fa;
+  --lec-mute: #a3b4d4;
+  --lec-dim: #6f84ad;
+  --lec-yel: #ffd43b;
+  --lec-sky: #8cc4f2;
+  --lec-coral: #ff8a7a;
+  --lec-green: #5fd39a;
+  --lec-orange: #f7b27a;
+  --lec-blue: #3776ab;
+  --lec-code-size: 0.95rem;
+}
+
+/* ---------- cinema background (hero, stage) ---------- */
+
+.lec-cinema {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--lec-ink);
+  background: radial-gradient(ellipse 75% 65% at 50% 38%, #18305e 0%, #0f1c38 46%, var(--lec-night) 100%);
+}
+.lec-cinema::before {
+  /* faint perspective grid floor */
+  content: "";
+  position: absolute;
+  inset: auto -20% -1px -20%;
+  height: 45%;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, rgb(70 120 210 / 0.14) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(70 120 210 / 0.12) 1px, transparent 1px);
+  background-size: 56px 56px;
+  transform: perspective(420px) rotateX(58deg);
+  transform-origin: bottom;
+  mask-image: linear-gradient(to top, black, transparent);
+}
+.lec-cinema::after {
+  /* drifting particles and a soft vignette */
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(2px 2px at 12% 22%, rgb(255 212 59 / 0.7), transparent 60%),
+    radial-gradient(2px 2px at 78% 14%, rgb(140 196 242 / 0.7), transparent 60%),
+    radial-gradient(1.5px 1.5px at 64% 70%, rgb(140 196 242 / 0.6), transparent 60%),
+    radial-gradient(1.5px 1.5px at 30% 82%, rgb(140 196 242 / 0.5), transparent 60%),
+    radial-gradient(2px 2px at 90% 58%, rgb(255 212 59 / 0.55), transparent 60%),
+    radial-gradient(1.5px 1.5px at 46% 34%, rgb(140 196 242 / 0.45), transparent 60%),
+    radial-gradient(ellipse 80% 75% at 50% 48%, transparent 60%, rgb(2 5 12 / 0.55) 100%);
+  animation: lec-drift 24s ease-in-out infinite alternate;
+}
+@keyframes lec-drift {
+  to {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+/* chapter label: 01 ── Title */
+.lec-chapter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lec-mute);
+}
+.lec-chapter b {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--lec-yel);
+}
+/* On a page or card background instead of the navy stage (admin headers, the
+   sign-in card): the theme's own colours, so the strip keeps its contrast in
+   light mode. The utility class alone can't do it: Tailwind's utilities sit in
+   a layer, and this file's rules win over them. */
+.lec-chapter.text-muted {
+  color: var(--color-muted);
+}
+.lec-chapter.text-muted b {
+  color: var(--color-primary-text);
+}
+.lec-chapter i {
+  display: inline-block;
+  width: 2rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+.lec-hot {
+  color: var(--lec-yel);
+}
+
+/* ---------- note shapes (circle, square, diamond, triangle) ---------- */
+
+.lec-shape {
+  display: inline-block;
+  flex: none;
+  width: 0.8rem;
+  height: 0.8rem;
+  background: var(--shape-color, var(--lec-sky));
+}
+.lec-shape--circle {
+  border-radius: 50%;
+}
+.lec-shape--square {
+  border-radius: 3px;
+}
+.lec-shape--diamond {
+  border-radius: 2px;
+  transform: rotate(45deg) scale(0.86);
+}
+.lec-shape--tri {
+  clip-path: polygon(50% 4%, 98% 94%, 2% 94%);
+}
+[data-color="sky"] {
+  --shape-color: var(--lec-sky);
+}
+[data-color="yel"] {
+  --shape-color: var(--lec-yel);
+}
+[data-color="coral"] {
+  --shape-color: var(--lec-coral);
+}
+[data-color="green"] {
+  --shape-color: var(--lec-green);
+}
+
+/* ---------- the stage ---------- */
+
+.lec-stage {
+  --line-h: 1.9rem;
+  margin-block: 1.75rem;
+  border-radius: 1.25rem;
+  padding: clamp(0.75rem, 2.5vw, 1.5rem);
+  box-shadow:
+    0 18px 50px rgb(3 7 18 / 0.35),
+    0 0 0 1px #24365e;
+}
+.lec-stage__grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: stretch;
+}
+@media (min-width: 64rem) {
+  .lec-stage--wide .lec-stage__grid {
+    grid-template-columns: minmax(0, 1.6fr) auto minmax(0, 1fr);
+  }
+}
+
+.lec-box {
+  position: relative;
+  min-width: 0;
+  border-radius: 1rem;
+  border: 1.5px solid var(--lec-box-line);
+  background: linear-gradient(180deg, var(--lec-box-top) 0%, var(--lec-box-bottom) 100%);
+  box-shadow:
+    0 20px 45px rgb(0 0 0 / 0.35),
+    inset 0 1px 0 rgb(255 255 255 / 0.07);
+}
+.lec-box__head {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.6rem;
+  padding: 0 0.9rem;
+  border-bottom: 1px solid var(--lec-rule);
+  border-radius: 1rem 1rem 0 0;
+  background: rgb(255 255 255 / 0.03);
+}
+/* language tabs (the home page's Python / C++ choice): editor tabs on top of the INPUT box */
+.lec-tabs {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.4rem 0.6rem 0;
+  border-bottom: 1px solid var(--lec-rule);
+  border-radius: 1rem 1rem 0 0;
+  background: rgb(0 0 0 / 0.2);
+}
+.lec-tab {
+  min-height: 2.75rem;
+  min-width: 5.5rem;
+  padding: 0 1.1rem;
+  border: 0;
+  border-radius: 0.6rem 0.6rem 0 0;
+  background: transparent;
+  color: var(--lec-mute);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.lec-tab:hover {
+  color: var(--lec-ink);
+  background: rgb(255 255 255 / 0.05);
+}
+.lec-tab[aria-selected="true"] {
+  color: var(--lec-ink);
+  background: rgb(255 255 255 / 0.08);
+  box-shadow: inset 0 -3px 0 var(--lec-yel);
+}
+.lec-tab:focus-visible {
+  outline: 3px solid var(--lec-yel);
+  outline-offset: -3px;
+}
+.lec-tabs + .lec-box__head {
+  border-radius: 0;
+}
+.lec-dot {
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 50%;
+  flex: none;
+}
+.lec-box__label {
+  margin-left: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--lec-mute);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lec-box__label b {
+  font-weight: 600;
+  color: var(--lec-ink);
+}
+.lec-box__tools {
+  margin-left: auto;
+  display: flex;
+  gap: 0.35rem;
+}
+.lec-tool {
+  min-height: 2rem;
+  min-width: 2rem;
+  padding: 0 0.6rem;
+  border-radius: 0.55rem;
+  border: 1px solid var(--lec-box-line);
+  background: rgb(255 255 255 / 0.04);
+  color: var(--lec-ink);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+.lec-tool:hover {
+  background: rgb(255 255 255 / 0.1);
+}
+.lec-tool[hidden] {
+  display: none;
+}
+
+/* code area */
+.lec-code {
+  position: relative;
+  overflow-x: auto;
+  padding: 0.85rem 1rem 1rem 0;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--lec-code-size);
+  line-height: var(--line-h);
+  color: var(--lec-ink);
+  tab-size: 4;
+}
+.lec-code:focus-visible {
+  outline-offset: -3px;
+}
+.lec-line {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.2rem max-content;
+  min-height: var(--line-h);
+}
+.lec-line__no {
+  padding-right: 1rem;
+  text-align: right;
+  font-weight: 400;
+  font-size: 0.8em;
+  color: #4f6390;
+  user-select: none;
+}
+.lec-line__code {
+  position: relative;
+  white-space: pre;
+}
+.lec-line.is-running {
+  background: rgb(255 212 59 / 0.1);
+  box-shadow: inset 4px 0 0 var(--lec-yel);
+  border-radius: 0.4rem;
+}
+
+/* the soft highlight + underline on the exact code a note or strip points at */
+.lec-mark {
+  position: absolute;
+  top: 0.18rem;
+  bottom: 0.18rem;
+  left: calc(var(--col) * 1ch - 3px);
+  width: calc(var(--len) * 1ch + 6px);
+  border-radius: 0.35rem;
+  background: color-mix(in srgb, var(--shape-color) 16%, transparent);
+  border-bottom: 2.5px solid var(--shape-color);
+  pointer-events: none;
+}
+
+/*
+ * Rows under a line: one note chip or one strip each, ordered right-to-left by
+ * the column they point at, so the lines never cross a chip. Each line runs up
+ * from its chip; the group clips it at the top, where the code line ends.
+ */
+.lec-under-group {
+  position: relative;
+  margin-top: -0.25rem;
+  padding: 0.25rem 0 0.35rem;
+  overflow-x: visible;
+  overflow-y: clip;
+}
+.lec-under {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.2rem max-content;
+}
+.lec-under__body {
+  position: relative;
+  padding-left: calc(var(--col) * 1ch);
+  padding-block: 0.3rem;
+}
+.lec-under__body > :not(.lec-link) {
+  position: relative;
+  z-index: 1;
+}
+.lec-link {
+  /* the thin line from the code down to its chip or strip */
+  position: absolute;
+  z-index: 0;
+  left: calc(var(--center) * 1ch);
+  width: 2px;
+  margin-left: -1px;
+  bottom: calc(100% - 0.65rem);
+  height: 40rem;
+  background: var(--shape-color);
+  border-radius: 1px;
+  pointer-events: none;
+}
+.lec-link::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  bottom: -3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--shape-color);
+}
+.lec-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 2.1rem;
+  padding: 0.2rem 0.85rem 0.2rem 0.65rem;
+  border-radius: 0.7rem;
+  border: 1.5px solid color-mix(in srgb, var(--shape-color) 60%, transparent);
+  background: #101d3a;
+  box-shadow: 0 8px 20px rgb(0 0 0 / 0.4);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.85rem;
+  line-height: 1.3;
+  color: var(--lec-ink);
+  white-space: nowrap;
+}
+
+/* strips: boxes with index numbers */
+.lec-strip {
+  display: flex;
+  gap: 0.3rem;
+  align-items: flex-start;
+}
+.lec-cell {
+  display: grid;
+  justify-items: center;
+  gap: 0.15rem;
+}
+.lec-cell__box {
+  display: grid;
+  place-items: center;
+  min-width: 2.4ch;
+  height: 1.9rem;
+  padding: 0 0.45ch;
+  border-radius: 0.45rem;
+  font-size: 0.95em;
+  box-shadow: 0 5px 12px rgb(0 0 0 / 0.35);
+  white-space: pre;
+}
+.lec-strip--chr .lec-cell__box {
+  background: #e9eef7;
+  color: var(--lec-panel);
+}
+.lec-strip--item .lec-cell__box {
+  min-width: 5ch;
+  background: var(--lec-blue);
+  color: var(--lec-ink);
+}
+.lec-cell__index {
+  font-weight: 600;
+  font-size: 0.72em;
+  line-height: 1.2;
+  color: var(--lec-sky);
+}
+.lec-cell__neg {
+  padding: 0 0.35rem;
+  border-radius: 0.35rem;
+  background: var(--lec-yel);
+  color: var(--lec-panel);
+  font-size: 0.68em;
+  line-height: 1.35;
+}
+
+/* run button between the boxes */
+.lec-run-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.95rem;
+}
+.lec-run {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 50%;
+  border: 0;
+  background: var(--lec-yel);
+  color: var(--lec-panel);
+  box-shadow:
+    0 0 0 0.45rem rgb(255 212 59 / 0.16),
+    0 8px 22px rgb(0 0 0 / 0.45);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.lec-run:hover {
+  transform: scale(1.06);
+}
+.lec-run:focus-visible {
+  outline: 3px solid var(--lec-ink);
+  outline-offset: 4px;
+}
+.lec-run:disabled {
+  cursor: progress;
+}
+.lec-run svg {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+.lec-run__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid var(--lec-yel);
+  opacity: 0;
+  pointer-events: none;
+}
+.lec-run.is-pulsing .lec-run__ring {
+  animation: lec-ring 0.8s ease-out;
+}
+@keyframes lec-ring {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(2.2);
+  }
+}
+.lec-run__label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--lec-mute);
+  text-align: center;
+}
+@media (min-width: 64rem) {
+  .lec-stage--wide .lec-run-wrap {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-inline: 0.25rem;
+  }
+}
+
+/* output console */
+.lec-output {
+  min-height: 5.5rem;
+  /* Long output scrolls inside the box (it follows the newest line while the program runs). */
+  max-height: 26rem;
+  overflow-y: auto;
+  padding: 0.85rem 1rem 1rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--lec-code-size);
+  line-height: 1.65;
+  color: #e6edf7;
+  /* Wrap long lines like a terminal, so phones never need sideways scrolling. */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.lec-output__err {
+  color: var(--lec-coral);
+}
+/* Keyboard input echoed into the output, as a terminal shows what you typed. */
+.lec-output__typed {
+  color: var(--lec-green);
+  text-decoration: underline;
+  text-decoration-color: rgb(95 211 154 / 0.45);
+  text-underline-offset: 3px;
+}
+.lec-output__placeholder {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  white-space: normal;
+  color: var(--lec-mute);
+}
+.lec-output.is-shaking {
+  animation: lec-shake 0.4s ease;
+}
+@keyframes lec-shake {
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+  75% {
+    transform: translateX(-2px);
+  }
+}
+.lec-caret {
+  display: inline-block;
+  width: 0.55ch;
+  height: 1.1em;
+  margin-left: 1px;
+  vertical-align: -0.15em;
+  background: var(--lec-yel);
+  border-radius: 1px;
+  animation: lec-blink 0.9s steps(2) infinite;
+}
+@keyframes lec-blink {
+  to {
+    visibility: hidden;
+  }
+}
+.lec-status {
+  padding: 0.55rem 1rem 0.8rem;
+  border-top: 1px solid var(--lec-rule);
+  font-size: 0.78rem;
+  color: var(--lec-mute);
+}
+.lec-status b {
+  color: var(--lec-ink);
+  font-weight: 600;
+}
+
+/* keyboard input (stdin) strip under the editor */
+.lec-stdin {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+}
+.lec-stdin label,
+.lec-stdin__title {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lec-mute);
+}
+.lec-stdin textarea,
+.lec-stdin pre,
+.lec-editor {
+  width: 100%;
+  margin: 0;
+  padding: 0.6rem 0.85rem;
+  border-radius: 0.7rem;
+  border: 1.5px dashed var(--lec-box-line);
+  background: rgb(7 13 26 / 0.6);
+  color: var(--lec-ink);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--lec-code-size);
+  line-height: 1.6;
+  resize: vertical;
+}
+.lec-editor {
+  display: block;
+  min-height: 12rem;
+  border-style: solid;
+  border: 0;
+  border-radius: 0 0 1rem 1rem;
+  padding: 0.85rem 1rem 1rem 1rem;
+  line-height: var(--line-h);
+  white-space: pre;
+  overflow-x: auto;
+}
+.lec-editor:focus-visible {
+  outline: 3px solid var(--lec-yel);
+  outline-offset: -3px;
+}
+.lec-editor-wrap {
+  display: flex;
+  align-items: stretch;
+  border-radius: 0 0 1rem 1rem;
+  background: rgb(7 13 26 / 0.6);
+}
+.lec-editor__nos {
+  flex: none;
+  min-width: 2.4rem;
+  margin: 0;
+  padding: 0.85rem 0 1rem 0.6rem;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: var(--lec-code-size);
+  font-weight: 400;
+  line-height: var(--line-h);
+  color: #4f6390;
+  user-select: none;
+}
+.lec-editor-wrap .lec-editor {
+  flex: 1;
+  min-width: 0;
+  padding-left: 0.75rem;
+  border-radius: 0 0 1rem 0;
+  background: transparent;
+}
+
+/* the curved line that flies from INPUT to OUTPUT on each run */
+.lec-fly {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.lec-fly path {
+  fill: none;
+  stroke: var(--lec-yel);
+  stroke-width: 3;
+  stroke-linecap: round;
+  animation: lec-fly 0.9s ease-out forwards;
+}
+@keyframes lec-fly {
+  0% {
+    stroke-dashoffset: var(--len);
+    opacity: 1;
+  }
+  55% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+/* code typing itself the first time a stage scrolls into view */
+.lec-stage[data-typing="waiting"] .lec-line__code,
+.lec-stage[data-typing="waiting"] .lec-under,
+.lec-stage[data-typing="waiting"] .lec-mark {
+  visibility: hidden;
+}
+.lec-stage[data-typing="on"] .lec-line__code {
+  overflow: hidden;
+  max-width: 0;
+  /* jump-start: the browser can end the animation at a progress of 0.99999…, and
+     with "end" steps that left the last character (or a whole "{" line) hidden. */
+  animation: lec-type calc(var(--chars) * 35ms) steps(var(--chars), jump-start) forwards;
+  animation-delay: var(--at);
+}
+.lec-stage[data-typing="on"] .lec-under,
+.lec-stage[data-typing="on"] .lec-mark {
+  opacity: 0;
+  animation: lec-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: var(--at);
+}
+@keyframes lec-type {
+  to {
+    max-width: calc(var(--chars) * 1ch + 1px);
+  }
+}
+@keyframes lec-pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lec-cinema::after,
+  .lec-run.is-pulsing .lec-run__ring,
+  .lec-output.is-shaking,
+  .lec-fly path {
+    animation: none;
+  }
+  .lec-fly {
+    display: none;
+  }
+}
+
+/* ---------- syntax colours (names white, strings yellow, calls sky, numbers orange) ---------- */
+
+.tok-str {
+  color: var(--lec-yel);
+}
+.tok-fn,
+.tok-builtin {
+  color: var(--lec-sky);
+}
+.tok-num,
+.tok-lit {
+  color: var(--lec-orange);
+}
+.tok-kw {
+  color: var(--lec-coral);
+}
+.tok-type {
+  color: var(--lec-green);
+}
+.tok-pre {
+  color: var(--lec-coral);
+}
+.tok-com {
+  color: #8ea2c6;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ---------- code blocks and INPUT / OUTPUT boxes inside lesson text ---------- */
+
+.code-block,
+.io-box {
+  margin-block: 1.1rem;
+  overflow: hidden;
+  border-radius: 0.9rem;
+  border: 1.5px solid var(--lec-box-line);
+  background: linear-gradient(180deg, var(--lec-box-top), var(--lec-box-bottom));
+  color: var(--lec-ink);
+}
+.code-block__bar,
+.io-box figcaption {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.3rem;
+  padding: 0 0.85rem;
+  border-bottom: 1px solid var(--lec-rule);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--lec-mute);
+}
+.code-block pre,
+.io-box pre {
+  margin: 0;
+  padding: 0.8rem 1rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--lec-code-size);
+  line-height: 1.65;
+  white-space: pre;
+}
+.code-copy {
+  margin-left: auto;
+  min-height: 1.9rem;
+  padding: 0 0.65rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--lec-box-line);
+  background: rgb(255 255 255 / 0.05);
+  color: var(--lec-ink);
+  font: 500 0.72rem/1 var(--font-sans);
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+.code-copy[hidden] {
+  display: none;
+}
+.io-box--output pre {
+  color: #e6edf7;
+}
+.io-box--input figcaption::before {
+  content: "⌨";
+  font-size: 0.95rem;
+  letter-spacing: 0;
+  color: var(--lec-sky);
+}
+
+/* ---------- lesson text ---------- */
+
+.lesson-prose {
+  color: var(--cl-text);
+  font-size: 1.02rem;
+}
+.lesson-prose > * + * {
+  margin-top: 1rem;
+}
+.lesson-prose h3 {
+  margin-top: 1.75rem;
+  font-size: 1.2rem;
+}
+.lesson-prose h4 {
+  margin-top: 1.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+.lesson-prose a {
+  color: var(--cl-primary-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.lesson-prose strong {
+  font-weight: 600;
+}
+.lesson-prose ul,
+.lesson-prose ol {
+  padding-left: 1.4rem;
+}
+.lesson-prose ul {
+  list-style: disc;
+}
+.lesson-prose ol {
+  list-style: decimal;
+}
+.lesson-prose li + li {
+  margin-top: 0.4rem;
+}
+.lesson-prose li::marker {
+  color: var(--cl-accent);
+}
+.lesson-prose :not(pre) > code {
+  padding: 0.1em 0.38em;
+  border-radius: 0.35rem;
+  background: var(--cl-surface-2);
+  border: 1px solid var(--cl-border);
+  font-weight: 700;
+  font-size: 0.88em;
+  color: var(--cl-text);
+}
+.table-wrap {
+  position: relative; /* keeps screen-reader-only text inside the scroll box */
+  overflow-x: auto;
+  border-radius: 0.8rem;
+  border: 1px solid var(--cl-border);
+}
+.lesson-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.93rem;
+}
+.lesson-prose th,
+.lesson-prose td {
+  padding: 0.55rem 0.8rem;
+  text-align: left;
+  border-bottom: 1px solid var(--cl-border);
+  white-space: nowrap;
+}
+.lesson-prose th {
+  background: var(--cl-surface-2);
+  font-weight: 600;
+}
+.lesson-prose tr:last-child td {
+  border-bottom: 0;
+}
+
+/* callouts: check yourself, tip, warning */
+.callout {
+  margin-block: 1.25rem;
+  padding: 1rem 1.15rem;
+  border-radius: 1rem;
+  border: 1.5px solid var(--cl-border);
+  background: var(--cl-surface);
+}
+.callout > * + * {
+  margin-top: 0.75rem;
+}
+.callout__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cl-text-muted);
+}
+.callout__label::before {
+  content: "";
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: var(--lec-sky);
+}
+.callout__title {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+.callout--check {
+  border-color: color-mix(in srgb, var(--lec-sky) 55%, var(--cl-border));
+}
+.callout--tip .callout__label::before {
+  border-radius: 3px;
+  background: var(--lec-green);
+}
+.callout--tip {
+  border-color: color-mix(in srgb, var(--lec-green) 50%, var(--cl-border));
+}
+.callout--warning .callout__label::before {
+  border-radius: 0;
+  clip-path: polygon(50% 4%, 98% 94%, 2% 94%);
+  background: var(--lec-coral);
+}
+.callout--warning {
+  border-color: color-mix(in srgb, var(--lec-coral) 55%, var(--cl-border));
+}
+.check-answer {
+  border-top: 1px dashed var(--cl-border);
+  padding-top: 0.75rem;
+}
+.check-answer > summary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  border-radius: 0.75rem;
+  background: var(--cl-primary);
+  color: var(--cl-on-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  list-style: none;
+}
+.check-answer > summary::-webkit-details-marker {
+  display: none;
+}
+.check-answer[open] > summary {
+  background: var(--cl-surface-2);
+  color: var(--cl-text);
+}
+.check-answer > :not(summary) {
+  margin-top: 0.75rem;
+}
+
+/* ---------- lesson page pieces outside the stage (follow the light/dark theme) ---------- */
+
+.lesson-chapter {
+  color: var(--cl-text-muted);
+}
+.lesson-chapter b {
+  color: var(--cl-primary-text);
+}
+.lesson-section + .lesson-section {
+  margin-top: 3.25rem;
+}
+.lesson-panel {
+  padding: 1.25rem 1.25rem 1.4rem;
+  border-radius: 1.1rem;
+  border: 1.5px solid var(--cl-border);
+  background: var(--cl-surface);
+}
+.lesson-panel--common_mistakes {
+  border-color: color-mix(in srgb, var(--lec-coral) 55%, var(--cl-border));
+  background: color-mix(in srgb, var(--cl-hard-soft) 45%, var(--cl-surface));
+}
+.lesson-panel--key_takeaways {
+  border-color: color-mix(in srgb, var(--lec-yel) 70%, var(--cl-border));
+  background: color-mix(in srgb, var(--cl-medium-soft) 45%, var(--cl-surface));
+}
+.lesson-figure {
+  margin-block: 1.5rem;
+}
+.lesson-figure__frame {
+  display: grid;
+  place-items: center;
+  padding: clamp(0.75rem, 3vw, 1.5rem);
+  border-radius: 1.1rem;
+  background: radial-gradient(ellipse 75% 65% at 50% 38%, #18305e 0%, #0f1c38 46%, var(--lec-night) 100%);
+  box-shadow: 0 0 0 1px #24365e;
+}
+.lesson-figure__frame img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  image-rendering: auto;
+}
+.lesson-figure figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.88rem;
+}
+.lesson-figure__download {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.75rem;
+  color: var(--cl-primary-text);
+  font-weight: 600;
+}
+.lesson-figure__download:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

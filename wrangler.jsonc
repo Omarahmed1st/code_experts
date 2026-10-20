@@ -1,0 +1,47 @@
+// Worker configuration for local development.
+// Preview and production environments are added in Phase 7 (DEPLOYMENT.md),
+// once the real D1 database ids and R2 bucket names exist in the Cloudflare account.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "codelab",
+  "compatibility_date": "2026-10-08",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "vinext/server/fetch-handler",
+  "assets": {
+    "directory": "dist/client",
+    "not_found_handling": "none",
+    "binding": "ASSETS"
+  },
+  "observability": { "enabled": true },
+
+  // Relational data. database_id is added after `wrangler d1 create` (Phase 7);
+  // local development doesn't need one.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "codelab",
+      "migrations_dir": "migrations"
+    }
+  ],
+
+  // PowerPoints, PDFs and images. Keys are always courses/<course_id>/...
+  "r2_buckets": [
+    {
+      "binding": "FILES",
+      "bucket_name": "codelab-files"
+    }
+  ],
+
+  // Non-secret settings. Secrets (auth, Turnstile, email) go in .dev.vars locally
+  // and `wrangler secret put` in production; see .dev.vars.example.
+  "vars": {
+    "APP_ENV": "local",
+    "PUBLIC_SITE_URL": "http://localhost:5173",
+    // Ads stay off until AdSense approval, a real publisher id and real ad unit ids.
+    // One of two switches: the other is on /admin/ads. See docs/PHASE_6_OWNER_ACTIONS.md.
+    "ADS_ENABLED": "false"
+    // Only with a Google-certified third-party consent platform (not needed with
+    // Google's own Privacy & messaging): the CMP's https script address, e.g.
+    // "CMP_SCRIPT_URL": "https://<your CMP's script address>"
+  }
+}

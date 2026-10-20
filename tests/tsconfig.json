@@ -1,0 +1,7 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "types": ["vinext/types", "node", "@cloudflare/vitest-plugin/types"]
+  },
+  "include": ["../worker-configuration.d.ts", "../next-env.d.ts", "./**/*.ts", "../src/**/*.ts", "../src/**/*.tsx"]
+}

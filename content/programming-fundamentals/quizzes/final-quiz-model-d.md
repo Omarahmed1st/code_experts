@@ -1,0 +1,41 @@
+---
+slug: final-quiz-model-d
+title: Final quiz, model D
+modelOf: final-quiz
+questions:
+  - final-b-ops-precedence-and-compare
+  - final-if-which-inputs-print-yes
+  - final-while-trace-reverse-digits
+  - final-for-trace-odd-sum-even-count
+  - final-dowhile-trace-three-loops
+  - final-debug-fix-multiples-of-five
+  - final-b-types-cost-into-int
+  - final-m4-acc-fix-marks-until-minus-one
+  - final-m4-acc-trace-chain-message
+  - final-m4-algo-trace-average-not-whole
+  - final-m4-debug-fix-bus-fares
+  - final-m4-debug-which-fix-counts-evens
+  - final-m4-dowhile-trace-tickets-sold-out
+  - final-m4-dowhile-which-print-tens
+  - final-m4-exam-fix-highest-mark
+  - final-m4-exam-which-marks-were-typed
+  - final-m4-flow-trace-friday-parking
+  - final-m4-for-fix-commas-between-numbers
+  - final-m4-for-trace-four-headers
+  - final-m4-if-fix-metro-card-two-ifs
+  - final-m4-if-trace-clock-leading-zero
+  - final-m4-intro-precise-enough-steps
+  - final-m4-io-fix-date-with-slashes
+  - final-m4-io-what-the-screen-shows
+  - final-m4-loop-pseudo-trace-tea-cools-down
+  - final-m4-ops-fix-mark-report-comparisons
+  - final-m4-ops-trace-splitting-the-bill
+  - final-m4-pseudo-which-plans-work
+  - final-m4-solve-read-the-test-results
+  - final-m4-types-right-box-for-each-value
+  - final-m4-types-trace-sharing-loaves
+  - final-m4-var-fix-phone-credit
+  - final-m4-var-trace-last-three-readings
+  - final-m4-while-order-of-lines
+  - final-m4-while-trace-top-up-then-ride
+---

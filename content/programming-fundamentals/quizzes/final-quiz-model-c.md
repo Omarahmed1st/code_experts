@@ -1,0 +1,41 @@
+---
+slug: final-quiz-model-c
+title: Final quiz, model C
+modelOf: final-quiz
+questions:
+  - final-b-ops-precedence-and-compare
+  - final-if-which-inputs-print-yes
+  - final-while-trace-reverse-digits
+  - final-for-trace-odd-sum-even-count
+  - final-dowhile-trace-three-loops
+  - final-debug-fix-multiples-of-five
+  - final-b-types-cost-into-int
+  - final-m3-acc-fix-recharge-countdown
+  - final-m3-acc-trace-before-and-after
+  - final-m3-algo-steps-fan-checks-twice
+  - final-m3-debug-fix-hot-days-outside-loop
+  - final-m3-debug-which-bugs-give-20
+  - final-m3-dowhile-fix-atm-fifties
+  - final-m3-dowhile-trace-count-digits
+  - final-m3-exam-fix-one-mark-five-times
+  - final-m3-exam-trace-generated-marks
+  - final-m3-flow-count-the-shapes
+  - final-m3-for-trace-double-plus-one
+  - final-m3-for-which-match-the-while
+  - final-m3-if-assign-zero-credit
+  - final-m3-if-fix-semicolon-discount
+  - final-m3-intro-missing-semicolon-nothing-runs
+  - final-m3-io-fix-ticket-order-and-line
+  - final-m3-io-trace-exact-spaces
+  - final-m3-loop-pseudo-trace-water-tank
+  - final-m3-ops-trace-phone-bundles
+  - final-m3-ops-which-comparisons-print-1
+  - final-m3-pseudo-taxi-plan-checks
+  - final-m3-solve-fix-juice-cost-unused
+  - final-m3-types-fix-percentage-of-60
+  - final-m3-types-trace-taxi-fare-split
+  - final-m3-var-trace-print-is-not-store
+  - final-m3-var-what-the-boxes-hold
+  - final-m3-while-divide-by-three-checks
+  - final-m3-while-trace-saver-and-spender
+---

@@ -1,0 +1,397 @@
+[
+  {
+    "key": "courses/course_computer_vision/lessons/les_4cfff55b88f41741/cv-computer-sees.png",
+    "file": "content/computer-vision/images/cv-computer-sees.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_d210cceea941f3d2/cv-pipeline.png",
+    "file": "content/computer-vision/images/cv-pipeline.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_d210cceea941f3d2/cv-tasks.png",
+    "file": "content/computer-vision/images/cv-tasks.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_d210cceea941f3d2/cv-road-understanding.png",
+    "file": "content/computer-vision/images/cv-road-understanding.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_c5f7f82402451f6e/street.png",
+    "file": "content/computer-vision/images/street.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_c5f7f82402451f6e/cv-window-original.png",
+    "file": "content/computer-vision/images/cv-window-original.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_c2fc8d3dcbc2d6be/shapes.png",
+    "file": "content/computer-vision/images/shapes.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_c2fc8d3dcbc2d6be/pixel-grid.png",
+    "file": "content/computer-vision/images/pixel-grid.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_c2fc8d3dcbc2d6be/bgr-channels.png",
+    "file": "content/computer-vision/images/bgr-channels.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_c2fc8d3dcbc2d6be/marked.png",
+    "file": "content/computer-vision/images/marked.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_68c8eb7ee571205f/cv-grayscale.png",
+    "file": "content/computer-vision/images/cv-grayscale.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_776f7a5dd6219e8e/cv-resize.png",
+    "file": "content/computer-vision/images/cv-resize.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_ed3f022358ec5171/cv-beta.png",
+    "file": "content/computer-vision/images/cv-beta.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_ed3f022358ec5171/cv-alpha.png",
+    "file": "content/computer-vision/images/cv-alpha.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_ed3f022358ec5171/cv-alpha-beta.png",
+    "file": "content/computer-vision/images/cv-alpha-beta.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_ed3f022358ec5171/scene.png",
+    "file": "content/computer-vision/images/scene.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_ed3f022358ec5171/brightness-contrast.png",
+    "file": "content/computer-vision/images/brightness-contrast.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_ed3f022358ec5171/overflow.png",
+    "file": "content/computer-vision/images/overflow.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_e0c31345b781f8a8/cv-gaussian-sizes.png",
+    "file": "content/computer-vision/images/cv-gaussian-sizes.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_e0c31345b781f8a8/noisy-street.png",
+    "file": "content/computer-vision/images/noisy-street.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_e0c31345b781f8a8/cv-median.png",
+    "file": "content/computer-vision/images/cv-median.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_e0c31345b781f8a8/cv-filters.png",
+    "file": "content/computer-vision/images/cv-filters.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_4fe7de1a048935ac/cv-sharpen.png",
+    "file": "content/computer-vision/images/cv-sharpen.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_9e2de7522d4f2b45/cv-equalize.png",
+    "file": "content/computer-vision/images/cv-equalize.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_112ebfc8b5df2c05/cv-pipeline-stages.png",
+    "file": "content/computer-vision/images/cv-pipeline-stages.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_112ebfc8b5df2c05/poor-street.png",
+    "file": "content/computer-vision/images/poor-street.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_112ebfc8b5df2c05/cv-challenge.png",
+    "file": "content/computer-vision/images/cv-challenge.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_442fa32aab5eb1bb/cv-flat-edge-corner.png",
+    "file": "content/computer-vision/images/cv-flat-edge-corner.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_442fa32aab5eb1bb/cv-edges-vs-corners.png",
+    "file": "content/computer-vision/images/cv-edges-vs-corners.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_442fa32aab5eb1bb/cv-canny.png",
+    "file": "content/computer-vision/images/cv-canny.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_442fa32aab5eb1bb/cv-canny-thresholds.png",
+    "file": "content/computer-vision/images/cv-canny-thresholds.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_62f69d9857480dce/cv-corners.png",
+    "file": "content/computer-vision/images/cv-corners.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_302aeae469e9a462/cv-orb.png",
+    "file": "content/computer-vision/images/cv-orb.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_302aeae469e9a462/cv-keypoint.png",
+    "file": "content/computer-vision/images/cv-keypoint.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_98c70721c3dc932b/view-a.png",
+    "file": "content/computer-vision/images/view-a.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_98c70721c3dc932b/view-b.png",
+    "file": "content/computer-vision/images/view-b.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_98c70721c3dc932b/cv-matches.png",
+    "file": "content/computer-vision/images/cv-matches.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_98c70721c3dc932b/cv-match-difficulty.png",
+    "file": "content/computer-vision/images/cv-match-difficulty.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_c2b34d76e1b701c6/cv-see-understand-decide-act.png",
+    "file": "content/computer-vision/images/cv-see-understand-decide-act.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_c2b34d76e1b701c6/cv-frames.png",
+    "file": "content/computer-vision/images/cv-frames.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_44febf2b824a078c/cv-live-stages.png",
+    "file": "content/computer-vision/images/cv-live-stages.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_44febf2b824a078c/cv-live-windows.png",
+    "file": "content/computer-vision/images/cv-live-windows.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_44febf2b824a078c/cv-edges-meaning.png",
+    "file": "content/computer-vision/images/cv-edges-meaning.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_44febf2b824a078c/cv-live-experiments.png",
+    "file": "content/computer-vision/images/cv-live-experiments.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_computer_vision/lessons/les_44febf2b824a078c/cv-roi-preview.png",
+    "file": "content/computer-vision/images/cv-roi-preview.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_applications/lessons/les_169dba8964c25c2b/py-first-window.png",
+    "file": "content/programming-applications/images/py-first-window.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_applications/lessons/les_169dba8964c25c2b/py-coordinates.png",
+    "file": "content/programming-applications/images/py-coordinates.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_applications/lessons/les_00f7eb556125a847/py-point.png",
+    "file": "content/programming-applications/images/py-point.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_applications/lessons/les_00f7eb556125a847/py-points.png",
+    "file": "content/programming-applications/images/py-points.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_applications/lessons/les_00f7eb556125a847/py-line.png",
+    "file": "content/programming-applications/images/py-line.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_applications/lessons/les_00f7eb556125a847/py-circle.png",
+    "file": "content/programming-applications/images/py-circle.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_applications/lessons/les_00f7eb556125a847/py-rectangle.png",
+    "file": "content/programming-applications/images/py-rectangle.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_applications/lessons/les_00f7eb556125a847/py-more-shapes.png",
+    "file": "content/programming-applications/images/py-more-shapes.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_applications/lessons/les_0c2476c4f9984e9a/py-colors.png",
+    "file": "content/programming-applications/images/py-colors.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_applications/lessons/les_0c2476c4f9984e9a/py-color-row.png",
+    "file": "content/programming-applications/images/py-color-row.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_applications/lessons/les_0c2476c4f9984e9a/py-move.png",
+    "file": "content/programming-applications/images/py-move.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_applications/lessons/les_0c2476c4f9984e9a/py-text.png",
+    "file": "content/programming-applications/images/py-text.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_applications/lessons/les_bddd50d355ecf96e/py-click.png",
+    "file": "content/programming-applications/images/py-click.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_applications/lessons/les_bddd50d355ecf96e/py-click-circle.png",
+    "file": "content/programming-applications/images/py-click-circle.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_applications/lessons/les_bddd50d355ecf96e/py-target.png",
+    "file": "content/programming-applications/images/py-target.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_applications/lessons/les_b638a80716b65acd/py-traffic-light.png",
+    "file": "content/programming-applications/images/py-traffic-light.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_applications/lessons/les_b638a80716b65acd/py-house.png",
+    "file": "content/programming-applications/images/py-house.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_applications/lessons/les_b638a80716b65acd/py-sun.png",
+    "file": "content/programming-applications/images/py-sun.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_fundamentals/lessons/les_ae371952c0c968ae/flowchart-symbols.png",
+    "file": "content/programming-fundamentals/images/flowchart-symbols.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_fundamentals/lessons/les_ae371952c0c968ae/average-of-three.png",
+    "file": "content/programming-fundamentals/images/average-of-three.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_fundamentals/lessons/les_ae371952c0c968ae/temperature-fan.png",
+    "file": "content/programming-fundamentals/images/temperature-fan.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_fundamentals/lessons/les_e07719c8d778f2a7/flowchart-symbols.png",
+    "file": "content/programming-fundamentals/images/flowchart-symbols.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_fundamentals/lessons/les_e07719c8d778f2a7/rectangle-area.png",
+    "file": "content/programming-fundamentals/images/rectangle-area.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_fundamentals/lessons/les_810ecce8c9e38678/pass-or-fail.png",
+    "file": "content/programming-fundamentals/images/pass-or-fail.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_fundamentals/lessons/les_810ecce8c9e38678/larger-number.png",
+    "file": "content/programming-fundamentals/images/larger-number.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_fundamentals/lessons/les_810ecce8c9e38678/even-or-odd.png",
+    "file": "content/programming-fundamentals/images/even-or-odd.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_fundamentals/lessons/les_9cb99428c03bf192/loop-three-parts.png",
+    "file": "content/programming-fundamentals/images/loop-three-parts.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_fundamentals/lessons/les_9cb99428c03bf192/count-1-to-5.png",
+    "file": "content/programming-fundamentals/images/count-1-to-5.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_fundamentals/lessons/les_0a16fb429d30296a/exam-results.png",
+    "file": "content/programming-fundamentals/images/exam-results.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_fundamentals/lessons/les_1946d5476bda30c9/count-1-to-5.png",
+    "file": "content/programming-fundamentals/images/count-1-to-5.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_fundamentals/lessons/les_1946d5476bda30c9/loop-three-parts.png",
+    "file": "content/programming-fundamentals/images/loop-three-parts.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_fundamentals/lessons/les_a4b48227d1aff1d2/for-loop-order.png",
+    "file": "content/programming-fundamentals/images/for-loop-order.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_fundamentals/lessons/les_9962b1823b489bb3/do-while-flow.png",
+    "file": "content/programming-fundamentals/images/do-while-flow.png",
+    "contentType": "image/png"
+  },
+  {
+    "key": "courses/course_programming_fundamentals/lessons/les_b34272f68889dda4/fan-control-loop.png",
+    "file": "content/programming-fundamentals/images/fan-control-loop.png",
+    "contentType": "image/png"
+  }
+]

@@ -1,0 +1,725 @@
+/* ==========================================================================
+   Practice: question cards, answers, feedback, quiz runner (Phase 3).
+   The code boxes reuse the lec stage (lec.css); this file adds the parts
+   around them. Colours come from tokens.css so both themes stay AA.
+   ========================================================================== */
+
+.q-card {
+  border-radius: var(--radius-card);
+  border: 1px solid var(--cl-border);
+  background: var(--cl-surface);
+  padding: clamp(1rem, 3vw, 1.75rem);
+  box-shadow: var(--cl-shadow);
+}
+.q-card .lec-stage {
+  margin-block: 1.25rem;
+}
+.q-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.9rem;
+  font-size: 0.85rem;
+  color: var(--cl-text-muted);
+}
+.q-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 600;
+  color: var(--cl-text);
+}
+.q-type .lec-shape {
+  --shape-color: var(--lec-blue);
+}
+:root[data-theme="dark"] .q-type .lec-shape {
+  --shape-color: var(--lec-sky);
+}
+
+/* --- MCQ options --- */
+.q-options {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+}
+.q-option {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  align-items: start;
+  gap: 0.75rem;
+  min-height: 3rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: 0.85rem;
+  border: 1.5px solid var(--cl-border);
+  background: var(--cl-surface);
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+.q-option:hover {
+  border-color: var(--cl-border-strong);
+}
+.q-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.q-option:has(input:focus-visible) {
+  outline: 3px solid var(--cl-focus);
+  outline-offset: 2px;
+}
+.q-option__letter {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.6rem;
+  border: 1.5px solid var(--cl-border-strong);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.q-option[data-multiple="true"] .q-option__letter {
+  border-radius: 0.45rem;
+}
+.q-option__text {
+  align-self: center;
+  overflow-wrap: anywhere;
+}
+.q-option__text code,
+.q-feedback code,
+.q-review code {
+  padding: 0.05rem 0.35rem;
+  border-radius: 0.35rem;
+  background: var(--cl-surface-2);
+  font-size: 0.9em;
+}
+.q-option:has(input:checked) {
+  border-color: var(--cl-accent);
+  background: var(--cl-accent-soft);
+}
+.q-option:has(input:checked) .q-option__letter {
+  border-color: var(--cl-navy);
+  background: var(--cl-navy);
+  color: var(--lec-yel);
+}
+.q-option[data-result="right"] {
+  border-color: var(--cl-easy);
+  background: var(--cl-easy-soft);
+}
+.q-option[data-result="wrong"] {
+  border-color: var(--cl-hard);
+  background: var(--cl-hard-soft);
+}
+.q-option[data-result="missed"] {
+  border-style: dashed;
+  border-color: var(--cl-easy);
+}
+.q-option[data-locked="true"] {
+  cursor: default;
+}
+.q-option__note {
+  grid-column: 2;
+  font-size: 0.9rem;
+  color: var(--cl-text-muted);
+}
+.q-option__tag {
+  display: inline-block;
+  margin-right: 0.4rem;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.q-option[data-result="right"] .q-option__tag,
+.q-option[data-result="missed"] .q-option__tag {
+  color: var(--cl-easy);
+}
+.q-option[data-result="wrong"] .q-option__tag {
+  color: var(--cl-hard);
+}
+
+/* --- trace answer box (on the stage, like the OUTPUT box) --- */
+.q-trace-input {
+  display: block;
+  width: 100%;
+  min-height: 7rem;
+  margin: 0;
+  padding: 0.85rem 1rem 1rem;
+  border: 0;
+  border-radius: 0 0 1rem 1rem;
+  background: rgb(7 13 26 / 0.6);
+  color: var(--lec-ink);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--lec-code-size);
+  line-height: 1.65;
+  white-space: pre;
+  overflow-x: auto;
+  resize: vertical;
+}
+.q-trace-input:focus-visible {
+  outline: 3px solid var(--lec-yel);
+  outline-offset: -3px;
+}
+.q-trace-input:disabled {
+  opacity: 1;
+  color: #e6edf7;
+}
+
+/* --- test results in the OUTPUT box --- */
+.q-tests {
+  display: grid;
+  gap: 0.55rem;
+  padding: 0.85rem 1rem 1rem;
+  font-size: 0.9rem;
+}
+.q-test {
+  border-radius: 0.7rem;
+  border: 1px solid var(--lec-rule);
+  background: rgb(7 13 26 / 0.45);
+  padding: 0.55rem 0.75rem;
+}
+.q-test__head {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 600;
+  color: var(--lec-ink);
+}
+.q-test__mark {
+  display: grid;
+  place-items: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  flex: none;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: rgb(255 255 255 / 0.1);
+  color: var(--lec-mute);
+}
+.q-test[data-state="pass"] .q-test__mark {
+  background: var(--lec-green);
+  color: var(--lec-panel);
+}
+.q-test[data-state="fail"] .q-test__mark {
+  background: var(--lec-coral);
+  color: var(--lec-panel);
+}
+.q-test__body {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 0.45rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+@media (min-width: 40rem) {
+  .q-test__body {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.q-test__io {
+  min-width: 0;
+}
+.q-test__io span {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lec-mute);
+}
+.q-test__io pre {
+  margin: 0.15rem 0 0;
+  padding: 0.35rem 0.5rem;
+  border-radius: 0.45rem;
+  background: rgb(0 0 0 / 0.3);
+  color: #e6edf7;
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 9rem;
+  overflow-y: auto;
+}
+.q-test__io--typed pre {
+  color: var(--lec-green);
+}
+.q-test__io--got pre {
+  color: var(--lec-coral);
+}
+.q-test__why {
+  margin-top: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--lec-coral);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-family: var(--font-mono);
+}
+
+/* --- buttons row, hints --- */
+.q-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+}
+.q-hints {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.5rem;
+}
+.q-hint {
+  display: flex;
+  gap: 0.6rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--cl-border);
+  background: var(--cl-primary-soft);
+}
+.q-hint b {
+  flex: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cl-primary-text);
+}
+:root:not([data-theme="dark"]) .q-hint {
+  background: #fff8db;
+  border-color: #f0dc8a;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .q-hint {
+    background: var(--cl-primary-soft);
+    border-color: var(--cl-border);
+  }
+}
+
+/* --- feedback banner and review --- */
+.q-feedback {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  margin-top: 1.25rem;
+  padding: 0.9rem 1rem;
+  border-radius: 0.9rem;
+  border: 1.5px solid var(--cl-border);
+}
+.q-feedback[data-tone="right"] {
+  border-color: var(--cl-easy);
+  background: var(--cl-easy-soft);
+}
+.q-feedback[data-tone="wrong"] {
+  border-color: var(--cl-hard);
+  background: var(--cl-hard-soft);
+}
+.q-feedback[data-tone="info"] {
+  border-color: var(--cl-accent);
+  background: var(--cl-accent-soft);
+}
+.q-feedback__icon {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  flex: none;
+  border-radius: 50%;
+  font-weight: 700;
+  color: #fff;
+  background: var(--cl-accent);
+}
+.q-feedback[data-tone="right"] .q-feedback__icon {
+  background: var(--cl-easy);
+  color: var(--cl-bg);
+}
+.q-feedback[data-tone="wrong"] .q-feedback__icon {
+  background: var(--cl-hard);
+  color: var(--cl-bg);
+}
+.q-feedback__title {
+  font-weight: 700;
+}
+.q-review {
+  margin-top: 1.25rem;
+  display: grid;
+  gap: 1rem;
+}
+.q-review h3,
+.q-review h4 {
+  font-size: 1rem;
+}
+.q-steps {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.q-steps th,
+.q-steps td {
+  padding: 0.45rem 0.6rem;
+  border-bottom: 1px solid var(--cl-border);
+  text-align: left;
+  vertical-align: top;
+}
+.q-steps th {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cl-text-muted);
+}
+.q-steps td.q-steps__mono {
+  font-family: var(--font-mono);
+  white-space: pre-wrap;
+}
+.q-steps td.q-steps__out {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--cl-easy);
+  white-space: pre-wrap;
+}
+
+/* --- quiz runner --- */
+.quiz-bar {
+  position: sticky;
+  top: 4rem;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.9rem;
+  border: 1px solid var(--cl-border);
+  background: color-mix(in srgb, var(--cl-surface) 92%, transparent);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--cl-shadow);
+}
+.quiz-timer {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  padding: 0 0.85rem;
+  border-radius: 0.7rem;
+  background: var(--cl-navy);
+  color: var(--lec-yel);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.quiz-timer[data-low="true"] {
+  background: var(--cl-hard);
+  color: #fff;
+}
+.quiz-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.quiz-nav button {
+  display: grid;
+  place-items: center;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  border-radius: 0.6rem;
+  border: 1.5px solid var(--cl-border);
+  background: var(--cl-surface);
+  color: var(--cl-text);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  cursor: pointer;
+}
+.quiz-nav button[data-answered="true"] {
+  background: var(--cl-accent-soft);
+  border-color: var(--cl-accent);
+}
+.quiz-nav button[data-result="right"] {
+  background: var(--cl-easy-soft);
+  border-color: var(--cl-easy);
+}
+.quiz-nav button[data-result="wrong"] {
+  background: var(--cl-hard-soft);
+  border-color: var(--cl-hard);
+}
+.quiz-nav button[aria-current="step"] {
+  outline: 3px solid var(--cl-primary);
+  outline-offset: 1px;
+}
+.quiz-score {
+  display: grid;
+  place-items: center;
+  width: 8.5rem;
+  height: 8.5rem;
+  border-radius: 50%;
+  background: conic-gradient(var(--ring) calc(var(--pct) * 1%), rgb(255 255 255 / 0.12) 0);
+}
+.quiz-score > div {
+  display: grid;
+  place-items: center;
+  width: 6.9rem;
+  height: 6.9rem;
+  border-radius: 50%;
+  background: var(--lec-panel);
+  text-align: center;
+  line-height: 1.1;
+}
+.quiz-dialog {
+  max-width: min(28rem, calc(100vw - 2rem));
+  padding: 1.5rem;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--cl-border);
+  background: var(--cl-surface);
+  color: var(--cl-text);
+  box-shadow: var(--cl-shadow);
+}
+.quiz-dialog::backdrop {
+  background: rgb(3 7 18 / 0.6);
+}
+
+/* --- library --- */
+.ex-done {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.ex-done[data-status="correct"] {
+  color: var(--cl-easy);
+}
+.ex-done[data-status="wrong"] {
+  color: var(--cl-hard);
+}
+.demo-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.05rem 0.55rem;
+  border: 1px dashed var(--cl-border-strong);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--cl-text-muted);
+}
+
+/* ---------------------------------------------------------------- build your own exam */
+.pick-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.pick-legend b {
+  display: inline-grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  background: var(--lec-navy, #14213d);
+  color: var(--lec-yel, #ffd43b);
+  font-size: 0.85rem;
+}
+.pick-grid {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+}
+.pick-grid--row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.pick {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--cl-border-strong);
+  border-radius: 0.75rem;
+  background: var(--cl-surface);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+.pick:hover {
+  border-color: var(--cl-primary);
+}
+.pick:has(input:checked) {
+  border-color: var(--cl-primary);
+  background: var(--cl-primary-soft);
+}
+.pick:has(input:focus-visible) {
+  outline: 2px solid var(--cl-primary);
+  outline-offset: 2px;
+}
+.pick input {
+  margin-top: 0.2rem;
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: var(--cl-primary);
+  flex-shrink: 0;
+}
+.pick small {
+  display: block;
+  font-weight: 400;
+  color: var(--cl-text-muted);
+  font-size: 0.8rem;
+}
+.pick--small {
+  min-width: 4.25rem;
+  justify-content: center;
+}
+
+.quiz-tries {
+  margin-top: 1rem;
+  border-radius: 0.75rem;
+  padding: 0.7rem 0.9rem;
+  background: var(--cl-primary-soft);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+.quiz-tries[data-locked="true"] {
+  background: var(--cl-hard-soft);
+  color: var(--cl-hard);
+}
+
+/* --- one-line answer ("How many times?", "Find the value") --- */
+.q-short {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 1rem;
+  max-width: 22rem;
+}
+.q-short__label {
+  font-weight: 600;
+}
+.q-short__input {
+  min-height: 3rem;
+  padding: 0.6rem 0.9rem;
+  border: 1.5px solid var(--cl-border);
+  border-radius: 0.85rem;
+  background: var(--cl-surface);
+  color: var(--cl-text);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.q-short__input:focus-visible {
+  outline: 3px solid var(--cl-focus);
+  outline-offset: 2px;
+}
+.q-short__input:disabled {
+  opacity: 1;
+  background: var(--cl-surface-2);
+}
+
+/* --- fill in the blanks: text boxes inside the code --- */
+.q-blanks .lec-line__code {
+  white-space: pre;
+}
+.q-blank {
+  min-width: 4ch;
+  margin: 0 0.15rem;
+  padding: 0 0.35rem;
+  border: 0;
+  border-bottom: 2px dashed var(--lec-yel);
+  border-radius: 0.3rem 0.3rem 0 0;
+  background: rgb(255 212 59 / 0.12);
+  color: var(--lec-yel);
+  font: inherit;
+  line-height: inherit;
+}
+.q-blank:focus-visible {
+  outline: 2px solid var(--lec-yel);
+  outline-offset: 1px;
+}
+.q-blank:disabled {
+  opacity: 1;
+}
+
+/* --- put the lines in order --- */
+.q-order__list {
+  margin: 0.35rem 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.3rem;
+}
+.q-order__item {
+  display: grid;
+  /* The code scrolls inside its cell, so the move buttons stay on screen on a phone. */
+  grid-template-columns: 3.2rem minmax(0, 1fr) auto;
+  align-items: center;
+  min-height: 2.75rem;
+  margin-right: 0.25rem;
+  border: 1.5px solid var(--lec-box-line);
+  border-radius: 0.6rem;
+  background: rgb(140 196 242 / 0.08);
+}
+.q-order__item .lec-line__code {
+  white-space: pre;
+  overflow-x: auto;
+}
+@media (max-width: 480px) {
+  /* Phones: the whole line wraps so it can be read, and the buttons go under it. */
+  .q-order__item {
+    grid-template-columns: 2rem minmax(0, 1fr);
+    align-items: start;
+    padding-block: 0.35rem;
+  }
+  .q-order__item .lec-line__no {
+    padding-right: 0.5rem;
+  }
+  .q-order__item .lec-line__code {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .q-order__moves {
+    grid-column: 2;
+    justify-content: flex-end;
+    padding-top: 0.25rem;
+  }
+}
+.q-order__moves {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0 0.3rem;
+}
+.q-order__btn {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.5rem;
+  border: 1.5px solid var(--lec-box-line);
+  background: var(--lec-panel);
+  color: var(--lec-sky);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.q-order__btn:hover:not(:disabled) {
+  border-color: var(--lec-yel);
+  color: var(--lec-yel);
+}
+.q-order__btn:focus-visible {
+  outline: 2px solid var(--lec-yel);
+  outline-offset: 1px;
+}
+.q-order__btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* which model of the quiz this attempt got */
+.quiz-model {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 0.85rem;
+  border-radius: 0.7rem;
+  border: 1.5px solid var(--cl-border);
+  background: var(--cl-surface);
+  color: var(--cl-text);
+  font-weight: 700;
+}

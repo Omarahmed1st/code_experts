@@ -1,0 +1,58 @@
+/* Advertising (Phase 6). Ads sit in a plain, clearly labelled box that looks
+   like neither a lecture block nor a button, in both themes. */
+
+/* A live slot that folded away (no ad, consent refused, staff) leaves no gap. */
+.ad-gap:empty {
+  display: none;
+}
+
+.ad-slot {
+  position: relative;
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  border-top: 1px solid var(--cl-border);
+  border-bottom: 1px solid var(--cl-border);
+  padding-block: 0.5rem;
+  contain: layout;
+}
+
+.ad-slot__label {
+  margin: 0 0 0.25rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  letter-spacing: 0.04em;
+  color: var(--cl-text-muted);
+}
+
+.ad-slot__ins {
+  width: 100%;
+}
+
+/* Google marks a unit it couldn't fill; the box is folded away by AdUnit too. */
+.ad-slot ins.adsbygoogle[data-ad-status="unfilled"] {
+  display: none !important;
+}
+
+/* The staff-only preview box. Dashed and labelled so nobody takes it for content. */
+.ad-preview {
+  display: grid;
+  align-content: center;
+  gap: 0.25rem;
+  max-width: 100%;
+  border: 2px dashed var(--cl-border-strong);
+  border-radius: var(--radius-card, 1rem);
+  padding: 1rem 1.25rem;
+  background: repeating-linear-gradient(135deg, transparent 0 12px, var(--cl-surface-2) 12px 24px);
+  color: var(--cl-text);
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
+}
+
+.ad-preview__title {
+  font-weight: 600;
+}
+
+.ad-preview__note {
+  color: var(--cl-text-muted);
+}

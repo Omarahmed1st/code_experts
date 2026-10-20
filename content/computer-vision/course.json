@@ -1,0 +1,20 @@
+{
+  "courseId": "course_computer_vision",
+  "topics": [
+    { "slug": "introduction-to-computer-vision", "title": "Introduction to computer vision", "description": "What computer vision is, its main tasks and where it is used." },
+    { "slug": "reading-and-displaying-images", "title": "Image reading and display", "description": "Installing OpenCV, cv2.imread, showing images in a window and checking that they loaded." },
+    { "slug": "digital-images", "title": "Digital images", "description": "An image is a grid of numbers: size, shape and data type." },
+    { "slug": "pixels-and-color-channels", "title": "Pixels and color channels", "description": "Pixels, OpenCV's BGR channel order and converting colour to grayscale." },
+    { "slug": "image-resizing", "title": "Image resizing", "description": "cv2.resize, (width, height), keeping the aspect ratio, and interpolation." },
+    { "slug": "brightness-and-contrast", "title": "Brightness and contrast", "description": "Scaling and shifting pixel values without overflow." },
+    { "slug": "noise-reduction", "title": "Noise reduction", "description": "Mean, Gaussian and median blur, and when to use each." },
+    { "slug": "filtering", "title": "Filtering", "description": "Kernels and cv2.filter2D, starting with sharpening." },
+    { "slug": "image-enhancement", "title": "Image enhancement", "description": "Histogram equalization and a complete enhancement pipeline." },
+    { "slug": "edge-detection", "title": "Edge detection", "description": "What an edge is, and finding edges with the Canny detector." },
+    { "slug": "feature-detection", "title": "Feature detection", "description": "Corners and keypoints that can be found again in another image." },
+    { "slug": "feature-matching", "title": "Feature matching", "description": "Matching keypoints between two images." },
+    { "slug": "jetson-projects", "title": "Introductory Jetson-based projects", "description": "The semester project: a camera vehicle on an NVIDIA Jetson, and its live vision pipeline." },
+    { "slug": "image-transformations", "title": "Image transformations", "description": "Translation, rotation, flipping and perspective." },
+    { "slug": "object-recognition-basics", "title": "Object recognition basics", "description": "From features to deciding what is in an image." }
+  ]
+}

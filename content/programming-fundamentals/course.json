@@ -1,0 +1,24 @@
+{
+  "courseId": "course_programming_fundamentals",
+  "topics": [
+    { "slug": "introduction-to-programming", "title": "Introduction to programming", "description": "What a program is, how a computer runs it, and how C++ code becomes a running program." },
+    { "slug": "problem-solving", "title": "Problem-solving methodology", "description": "Understand the problem, plan the steps, then write and test the code." },
+    { "slug": "algorithms", "title": "Algorithms", "description": "Exact, ordered steps that solve a problem, written before any code." },
+    { "slug": "pseudocode", "title": "Pseudocode", "description": "Writing an algorithm in structured plain words before translating it to C++." },
+    { "slug": "variables", "title": "Variables", "description": "Named places in memory that hold a value your program can change." },
+    { "slug": "data-types", "title": "Data types", "description": "int, float, double, char, string and bool: what each one stores and how to choose." },
+    { "slug": "operators", "title": "Operators", "description": "Arithmetic, assignment and relational operators, and why % is handy for even and odd." },
+    { "slug": "flowcharts", "title": "Flowcharts", "description": "Drawing an algorithm with standard shapes: ovals, parallelograms, rectangles, diamonds and arrows." },
+    { "slug": "conditional-statements", "title": "Conditional statements", "description": "Choosing between two paths with IF … THEN … ELSE, then with if and else in C++." },
+    { "slug": "while-loops", "title": "While loops", "description": "Repeating steps while a condition stays true, first in pseudocode and then in C++." },
+    { "slug": "input-and-output", "title": "Input and output", "description": "Printing with cout and reading the user's values with cin." },
+    { "slug": "for-loops", "title": "For loops", "description": "Repeating code a known number of times with a counter." },
+    { "slug": "do-while-loops", "title": "Do-while loops", "description": "Loops that always run at least once, such as input validation." },
+    { "slug": "debugging", "title": "Debugging", "description": "Finding and fixing loops that never stop, run the wrong number of times or skip their body." },
+    { "slug": "tracing-programs", "title": "Tracing programs", "description": "Running a program by hand with a trace table to predict its output." },
+    { "slug": "nested-conditions", "title": "Nested conditions", "description": "Decisions inside decisions, and when to combine conditions instead." },
+    { "slug": "nested-loops", "title": "Nested loops", "description": "A loop inside a loop: rows and columns, patterns and tables." },
+    { "slug": "arrays", "title": "Arrays", "description": "Storing many values of one type under one name, with indexes from 0." },
+    { "slug": "functions", "title": "Functions", "description": "Naming a block of code, passing it values and getting a result back." }
+  ]
+}

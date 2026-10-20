@@ -1,0 +1,41 @@
+---
+slug: final-quiz-model-b
+title: Final quiz, model B
+modelOf: final-quiz
+questions:
+  - final-b-ops-precedence-and-compare
+  - final-if-which-inputs-print-yes
+  - final-while-trace-reverse-digits
+  - final-for-trace-odd-sum-even-count
+  - final-dowhile-trace-three-loops
+  - final-debug-fix-multiples-of-five
+  - final-b-types-cost-into-int
+  - final-m2-acc-trace-yearly-interest
+  - final-m2-acc-which-inputs-three-calls
+  - final-m2-algo-trace-plain-steps-heating
+  - final-m2-debug-first-wrong-trace-row
+  - final-m2-debug-trace-rising-days
+  - final-m2-dowhile-fix-doubling-challenge
+  - final-m2-dowhile-which-rewrites-match
+  - final-m2-exam-fix-inside-the-loop
+  - final-m2-exam-update-inside-then
+  - final-m2-flow-trace-two-diamonds-delivery
+  - final-m2-for-fix-star-rating
+  - final-m2-for-trace-tally-marks
+  - final-m2-if-fix-cheaper-price-first
+  - final-m2-if-trace-number-as-condition
+  - final-m2-intro-understand-stage-jobs
+  - final-m2-io-trace-empty-lines
+  - final-m2-io-which-typings-print-60
+  - final-m2-ops-trace-remainder-rank
+  - final-m2-ops-which-lines-add-five
+  - final-m2-pseudo-parcel-price-plan
+  - final-m2-pseudo-trace-pigeon-pairs
+  - final-m2-solve-fix-envelope-count
+  - final-m2-types-fix-name-and-height
+  - final-m2-types-trace-saved-bool
+  - final-m2-var-fix-meter-readings
+  - final-m2-var-which-start-both-at-zero
+  - final-m2-while-fix-station-list
+  - final-m2-while-trace-growing-steps
+---
