@@ -20,6 +20,7 @@
     {
       "binding": "DB",
       "database_name": "codelab",
+      "database_id": "0d36f960-72ad-44f2-adc1-62c430249582",
       "migrations_dir": "migrations"
     }
   ],
