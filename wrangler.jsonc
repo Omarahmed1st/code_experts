@@ -21,6 +21,7 @@
       "binding": "DB",
       "database_name": "codelab",
       "database_id": "0d36f960-72ad-44f2-adc1-62c430249582",
+      "ASSESSMENT_SECRET": "e36b65f77682956d77bce64b3985d6c6f107690b0e19ba85b09be06d2b681345",
       "migrations_dir": "migrations"
     }
   ],
