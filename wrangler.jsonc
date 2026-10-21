@@ -36,13 +36,8 @@
   // Non-secret settings. Secrets (auth, Turnstile, email) go in .dev.vars locally
   // and `wrangler secret put` in production; see .dev.vars.example.
   "vars": {
-    "APP_ENV": "local",
-    "PUBLIC_SITE_URL": "http://localhost:5173",
-    // Ads stay off until AdSense approval, a real publisher id and real ad unit ids.
-    // One of two switches: the other is on /admin/ads. See docs/PHASE_6_OWNER_ACTIONS.md.
-    "ADS_ENABLED": "false"
-    // Only with a Google-certified third-party consent platform (not needed with
-    // Google's own Privacy & messaging): the CMP's https script address, e.g.
-    // "CMP_SCRIPT_URL": "https://<your CMP's script address>"
+     "APP_ENV": "production",
+     "PUBLIC_SITE_URL": "https://code-experts.oa416657.workers.dev",
+     "ADS_ENABLED": "false"
   }
 }
