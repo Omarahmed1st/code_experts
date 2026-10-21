@@ -37,8 +37,9 @@
   // Non-secret settings. Secrets (auth, Turnstile, email) go in .dev.vars locally
   // and `wrangler secret put` in production; see .dev.vars.example.
   "vars": {
+     "ADS_ENABLED": "false",
      "APP_ENV": "production",
      "PUBLIC_SITE_URL": "https://code-experts.oa416657.workers.dev",
-     "ADS_ENABLED": "false"
+     "TURNSTILE_SITE_KEY": "0x4AAAAAAFe7rK-NtLAR9kIn"
   }
 }
